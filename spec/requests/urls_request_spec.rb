@@ -29,5 +29,23 @@ RSpec.describe "Urls", type: :request do
 
       expect(response).to redirect_to(new_url_path)
     end
+
+    it " does not cretes the Url in the db if it is invalid and redirects to urls/new" do
+      expect{ post "/urls", params: { url: { original_url: '//' }}}.not_to change(Url, :count)
+
+      expect(response).to redirect_to(new_url_path)
+    end
+  end
+
+  it " does not cretes the Url in the db if it is nil and redirects to urls/new" do
+    expect{ post "/urls", params: { url: { original_url: nil }}}.not_to change(Url, :count)
+
+    expect(response).to redirect_to(new_url_path)
+  end
+
+  it " does not cretes the Url in the db if it is empty and redirects to urls/new" do
+    expect{ post "/urls", params: { url: { original_url: "" }}}.not_to change(Url, :count)
+
+    expect(response).to redirect_to(new_url_path)
   end
 end

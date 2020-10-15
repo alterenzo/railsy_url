@@ -31,5 +31,10 @@ RSpec.describe Url, type: :model do
       url = described_class.new(original_url: '//')
       expect(url).not_to be_valid
     end
+
+    it 'is not valid with a nil url' do
+      url = described_class.new(original_url: nil)
+      expect(url).not_to be_valid
+    end
   end
 end

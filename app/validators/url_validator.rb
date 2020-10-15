@@ -1,6 +1,6 @@
 class UrlValidator < ActiveModel::Validator
   def validate(record)
-    record.errors[:original_url] << 'Not a valid url' unless valid_url?(record.original_url)
+    record.errors[:original_url] << 'Not a valid url' unless record.original_url.present? && valid_url?(record.original_url)
   end
 
   private
