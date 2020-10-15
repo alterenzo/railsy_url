@@ -1,2 +1,16 @@
-<h1>Urls#new</h1>
-<p>Find me in app/views/urls/new.html.erb</p>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= form_with model: @url do |form| %>
+  <p>
+    <%= form.label :original_url %><br>
+    <%= form.text_area :original_url %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
