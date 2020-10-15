@@ -23,11 +23,11 @@ RSpec.describe "Urls", type: :request do
     end
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/urls/create"
-      expect(response).to have_http_status(:success)
+  describe "POST /create" do
+    it "cretes the Url in the db if it si valid and redirects to urls/new" do
+      expect{ post "/urls", params: { url: 'https://www.google.com' }}.to change(Url, :count).by(1)
+
+      expect(response).to redirect_to(new_url_path)
     end
   end
-
 end

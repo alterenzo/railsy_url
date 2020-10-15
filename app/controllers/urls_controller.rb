@@ -10,5 +10,7 @@ class UrlsController < ApplicationController
   end
 
   def create
+    Url.create(original_url: params[:url])
+    redirect_to new_url_path
   end
 end
