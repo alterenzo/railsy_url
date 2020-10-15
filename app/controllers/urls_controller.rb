@@ -12,7 +12,7 @@ class UrlsController < ApplicationController
 
   def create
     url = Url.new(original_url: params[:url][:original_url])
-    url.save ? flash.notice = "Short url created: #{url_path(url)}" : flash.alert = "Invalid url"
+    url.save ? flash.notice = "Short url created: #{url_url(url)}" : flash.alert = "Invalid url"
     redirect_to new_url_path
   end
 end
