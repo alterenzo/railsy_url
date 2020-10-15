@@ -25,7 +25,7 @@ RSpec.describe "Urls", type: :request do
 
   describe "POST /create" do
     it "cretes the Url in the db if it si valid and redirects to urls/new" do
-      expect{ post "/urls", params: { url: 'https://www.google.com' }}.to change(Url, :count).by(1)
+      expect{ post "/urls", params: { url: { original_url: 'https://www.google.com' }}}.to change(Url, :count).by(1)
 
       expect(response).to redirect_to(new_url_path)
     end
