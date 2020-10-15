@@ -10,9 +10,11 @@ RSpec.describe "Urls", type: :request do
   end
 
   describe "GET /show" do
-    it "returns http success" do
-      get "/urls/show"
-      expect(response).to have_http_status(:success)
+    it "redirects to the saved url if present in the db" do
+      url = FactoryBot.create(:url)
+
+      get "/urls/#{url.id}"
+      expect(response).to redirect_to(url.original_url)
     end
   end
 
